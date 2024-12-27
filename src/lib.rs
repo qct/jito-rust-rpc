@@ -140,7 +140,12 @@ impl JitoJsonRpcSDK {
         };
     
         // Wrap the transactions array in another array
-        let params = json!([transactions]);
+        let params = json!([
+            transactions,
+            {
+                "encoding": "base64"
+            }
+        ]);
     
         // Send the wrapped transactions array
         self.send_request(&endpoint, "sendBundle", Some(params))
