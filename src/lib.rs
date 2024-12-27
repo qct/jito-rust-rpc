@@ -34,6 +34,14 @@ impl JitoJsonRpcSDK {
         }
     }
 
+    pub fn new_with_client(base_url: &str, uuid: Option<String>, client: Client) -> Self {
+        Self {
+            base_url: base_url.to_string(),
+            uuid,
+            client,
+        }
+    }
+
     async fn send_request(&self, endpoint: &str, method: &str, params: Option<Value>) -> Result<Value, reqwest::Error> {
         let url = format!("{}{}", self.base_url, endpoint);
         
